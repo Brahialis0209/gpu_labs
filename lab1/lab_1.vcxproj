@@ -27,9 +27,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectName>lab_1</ProjectName>
+    <ProjectName>lab1</ProjectName>
     <ProjectGuid>{B8FF81B5-9B26-4931-8353-07795FDC4043}</ProjectGuid>
-    <RootNamespace>Lab1</RootNamespace>
+    <RootNamespace>lab1</RootNamespace>
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -42,31 +42,31 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|X64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|X64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Profile|X64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings" />
@@ -144,8 +144,7 @@
       <EnableDPIAwareness>true</EnableDPIAwareness>
     </Manifest>
     <PreBuildEvent>
-      <Command>
-      </Command>
+      <Command>xcopy /y "$(SolutionDir)$(ProjectName)\shader.fx"  "$(OutDir)"</Command>
     </PreBuildEvent>
     <PostBuildEvent>
       <Command>
@@ -181,8 +180,7 @@
       <EnableDPIAwareness>true</EnableDPIAwareness>
     </Manifest>
     <PreBuildEvent>
-      <Command>
-      </Command>
+      <Command>xcopy /y "$(SolutionDir)$(ProjectName)\shader.fx"  "$(OutDir)"</Command>
     </PreBuildEvent>
     <PostBuildEvent>
       <Command>
@@ -221,8 +219,7 @@
       <EnableDPIAwareness>true</EnableDPIAwareness>
     </Manifest>
     <PreBuildEvent>
-      <Command>
-      </Command>
+      <Command>xcopy /y "$(SolutionDir)$(ProjectName)\shader.fx"  "$(OutDir)"</Command>
     </PreBuildEvent>
     <PostBuildEvent>
       <Command>
@@ -260,8 +257,7 @@
       <EnableDPIAwareness>true</EnableDPIAwareness>
     </Manifest>
     <PreBuildEvent>
-      <Command>
-      </Command>
+      <Command>xcopy /y "$(SolutionDir)$(ProjectName)\shader.fx"  "$(OutDir)"</Command>
     </PreBuildEvent>
     <PostBuildEvent>
       <Command>
@@ -300,8 +296,7 @@
       <EnableDPIAwareness>true</EnableDPIAwareness>
     </Manifest>
     <PreBuildEvent>
-      <Command>
-      </Command>
+      <Command>xcopy /y "$(SolutionDir)$(ProjectName)\shader.fx"  "$(OutDir)"</Command>
     </PreBuildEvent>
     <PostBuildEvent>
       <Command>
@@ -339,8 +334,7 @@
       <EnableDPIAwareness>true</EnableDPIAwareness>
     </Manifest>
     <PreBuildEvent>
-      <Command>
-      </Command>
+      <Command>xcopy /y "$(SolutionDir)$(ProjectName)\shader.fx"  "$(OutDir)"</Command>
     </PreBuildEvent>
     <PostBuildEvent>
       <Command>
@@ -348,14 +342,6 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <FxCompile Include="shader.fx">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </FxCompile>
     <FxCompile Include="p_shader.hlsl">
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">PS</EntryPointName>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Pixel</ShaderType>
@@ -375,6 +361,14 @@
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">PS</EntryPointName>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4.0</ShaderModel>
+    </FxCompile>
+    <FxCompile Include="shader.fx">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">true</ExcludedFromBuild>
     </FxCompile>
     <FxCompile Include="v_shader.hlsl">
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">VS</EntryPointName>
@@ -401,10 +395,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <CLInclude Include="resource.h" />
-    <ResourceCompile Include="Tutorial04.rc" />
-  </ItemGroup>
-  <ItemGroup>
+    <ResourceCompile Include="lab1.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

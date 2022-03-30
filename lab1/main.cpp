@@ -14,9 +14,9 @@
 #include <d3dcompiler.h>
 #include <directxmath.h>
 #include <directxcolors.h>
-#include "resource.h"
 #include <string>
 #include <iostream>
+
 
 using namespace DirectX;
 using namespace std;
@@ -63,6 +63,7 @@ XMMATRIX                g_World;
 XMMATRIX                g_View;
 XMMATRIX                g_Projection;
 XMMATRIX                g_Translation;
+ID3DUserDefinedAnnotation* ann = nullptr;
 bool l_debug = false;
 
 
@@ -86,7 +87,12 @@ int WINAPI wWinMain( _In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
     UNREFERENCED_PARAMETER( lpCmdLine );
     int arg_count;
     LPWSTR* args = CommandLineToArgvW(lpCmdLine, &arg_count);
-    if (arg_count != 0){ if (args[0] == L"DEBUG"){ l_debug = true; } }
+    wstring arg_0 = args[0];
+    if (arg_count != 0){ 
+        if (arg_0 == L"DEBUG"){ 
+            l_debug = true; 
+        } 
+    }
 
     if( FAILED( InitWindow( hInstance, nCmdShow ) ) )
         return 1;
@@ -131,12 +137,12 @@ HRESULT InitWindow( HINSTANCE hInstance, int nCmdShow )
     wcex.cbClsExtra = 0;
     wcex.cbWndExtra = 0;
     wcex.hInstance = hInstance;
-    wcex.hIcon = LoadIcon(hInstance, (LPCTSTR)IDI_TUTORIAL1);
+    wcex.hIcon = nullptr;
     wcex.hCursor = LoadCursor( nullptr, IDC_ARROW );
     wcex.hbrBackground = ( HBRUSH )( COLOR_WINDOW + 1 );
     wcex.lpszMenuName = nullptr;
     wcex.lpszClassName = L"TutorialWindowClass";
-    wcex.hIconSm = LoadIcon(wcex.hInstance, (LPCTSTR)IDI_TUTORIAL1);
+    wcex.hIconSm = nullptr;
     if( !RegisterClassEx( &wcex ) )
         return E_FAIL;
 
@@ -265,6 +271,11 @@ HRESULT InitDevice()
     }
     if (FAILED(hr))
         return hr;
+
+    hr = g_pImmediateContext->QueryInterface(__uuidof(ann), reinterpret_cast<void**>(&ann));
+    if (FAILED(hr))
+        return hr;
+
 
     // Create swap chain
     IDXGIFactory2* dxgiFactory2 = nullptr;
@@ -514,6 +525,7 @@ void CleanupDevice()
     if( g_pImmediateContext ) g_pImmediateContext->Release();
     if( g_pd3dDevice1 ) g_pd3dDevice1->Release();
     if( g_pd3dDevice ) g_pd3dDevice->Release();
+    if (ann) ann->Release();
 }
 
 
@@ -569,6 +581,7 @@ LRESULT CALLBACK WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam 
     case WM_SIZE:
         if (g_pSwapChain)
         {
+            if (ann) ann->BeginEvent(L"Resizing!");
             UINT w = LOWORD(lParam);
             UINT h = HIWORD(lParam);
             g_pImmediateContext->OMSetRenderTargets(0, 0, 0);
@@ -587,6 +600,7 @@ LRESULT CALLBACK WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam 
                 
             g_Projection = XMMatrixPerspectiveFovLH(XM_PIDIV2, w / (FLOAT)h, 0.01f, 100.0f);
         }
+        if (ann) ann->EndEvent();
         break;
 
     case WM_DESTROY:
@@ -610,6 +624,7 @@ void Render()
 {
 	// Update our time
 	static float t = 0.0f;
+    ann->BeginEvent(L"start rendering!");
 	if (g_driverType == D3D_DRIVER_TYPE_REFERENCE)
 	{
 		t += (float)XM_PI * 0.0125f;
@@ -655,6 +670,7 @@ void Render()
 	//
 	// Present our back buffer to our front buffer
 	//
-	g_pSwapChain->Present(0, 0);
+	g_pSwapChain->Present(1, 0);
+    ann->EndEvent();
 }
 

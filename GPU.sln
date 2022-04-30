@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.32228.343
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lab1", "lab1\lab_1.vcxproj", "{B8FF81B5-9B26-4931-8353-07795FDC4043}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lab2", "lab2\lab_2.vcxproj", "{2090E812-87A2-4FF5-AF60-21F35E7C10BF}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lab2", "..\..\..\Downloads\lab2\lab_2.vcxproj", "{2090E812-87A2-4FF5-AF60-21F35E7C10BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

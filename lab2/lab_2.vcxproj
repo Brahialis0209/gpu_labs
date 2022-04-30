@@ -144,7 +144,8 @@
       <EnableDPIAwareness>true</EnableDPIAwareness>
     </Manifest>
     <PreBuildEvent>
-      <Command>xcopy /y "$(SolutionDir)$(ProjectName)\shader.fx"  "$(OutDir)"</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
     <PostBuildEvent>
       <Command>
@@ -180,7 +181,8 @@
       <EnableDPIAwareness>true</EnableDPIAwareness>
     </Manifest>
     <PreBuildEvent>
-      <Command>xcopy /y "$(SolutionDir)$(ProjectName)\shader.fx"  "$(OutDir)"</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
     <PostBuildEvent>
       <Command>
@@ -219,7 +221,8 @@
       <EnableDPIAwareness>true</EnableDPIAwareness>
     </Manifest>
     <PreBuildEvent>
-      <Command>xcopy /y "$(SolutionDir)$(ProjectName)\shader.fx"  "$(OutDir)"</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
     <PostBuildEvent>
       <Command>
@@ -257,7 +260,8 @@
       <EnableDPIAwareness>true</EnableDPIAwareness>
     </Manifest>
     <PreBuildEvent>
-      <Command>xcopy /y "$(SolutionDir)$(ProjectName)\shader.fx"  "$(OutDir)"</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
     <PostBuildEvent>
       <Command>
@@ -296,7 +300,8 @@
       <EnableDPIAwareness>true</EnableDPIAwareness>
     </Manifest>
     <PreBuildEvent>
-      <Command>xcopy /y "$(SolutionDir)$(ProjectName)\shader.fx"  "$(OutDir)"</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
     <PostBuildEvent>
       <Command>
@@ -334,7 +339,8 @@
       <EnableDPIAwareness>true</EnableDPIAwareness>
     </Manifest>
     <PreBuildEvent>
-      <Command>xcopy /y "$(SolutionDir)$(ProjectName)\shader.fx"  "$(OutDir)"</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
     <PostBuildEvent>
       <Command>

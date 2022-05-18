@@ -28,16 +28,16 @@ public:
 
 	KeyboardKeys();
 
-	bool keyPressed(unsigned char keycode);
-	bool keyBufferEmpty();
-	bool symbBufferEmpty();
-
 	EventKeyboard ReadKey();
 	unsigned char ReadChar();
 
 	void OnKeyPressed(unsigned char key);
 	void OnKeyReleased(unsigned char key);
 	void OnChar(unsigned char key);
+
+	bool keyPressed(unsigned char keycode);
+	bool keyBufferEmpty();
+	bool symbBufferEmpty();
 
 	void EnableAutoRepeatKeys();
 	void DisableAutoRepeatKeys();

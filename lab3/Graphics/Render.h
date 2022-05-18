@@ -22,6 +22,7 @@ public:
     ID3D11Texture2D* GetTextRendTarg() const { return textRendTarg.Get(); };
     ID3D11RenderTargetView* GetTextTargView() const { return textTargView.Get(); };
     ID3D11ShaderResourceView* GetTextResView() const { return textResView.Get(); };
+    size_t GetMipLevels() const { return m_rtd.MipLevels; }
 
 private:
     ComPtr<ID3D11ShaderResourceView> textResView;
@@ -29,4 +30,6 @@ private:
     ComPtr<ID3D11RenderTargetView> textTargView;
     DXGI_FORMAT format;
     D3D11_VIEWPORT viewPort;
+
+    CD3D11_TEXTURE2D_DESC m_rtd;
 };

@@ -17,14 +17,12 @@ public:
     bool Init(ComPtr<ID3D11Device> pDev, size_t width, size_t height);
     bool ResizeWnd(size_t width, size_t height);
     ID3D11ShaderResourceView* ResShaderView() const { return vecTextures.back().GetTextResView(); }
-    float process(ComPtr<ID3D11DeviceContext> devCtx, ComPtr<ID3D11ShaderResourceView> sourceTexture);
+    float process(ComPtr<ID3D11DeviceContext> devCtx, ComPtr<ID3D11ShaderResourceView> srcText);
 
 private:
-    void rendText(ComPtr<ID3D11DeviceContext> devCtx, ComPtr<ID3D11ShaderResourceView> sourceTexture,
+    void rendText(ComPtr<ID3D11DeviceContext> devCtx, ComPtr<ID3D11ShaderResourceView> srcText,
         Render& render, ComPtr<ID3D11PixelShader> pShader);
-
     vector<Render> vecTextures;
-
     VertexShader vertexShader;
     PixelShader pixelShader;
     PixelShader lumPixelShader;

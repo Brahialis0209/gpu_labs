@@ -184,8 +184,7 @@ bool RenderWindow::Init(Manager* window_container_ptr,
 	nameWndClass = wndName;
 	wideName = wstring(wndName.begin(), wndName.end());
 
-	if (!InitWndClass())
-	{
+	if (!InitWndClass()) {
 		utils::Loger::Log("Failed register window class.");
 		return false;
 	}
@@ -210,8 +209,7 @@ bool RenderWindow::Init(Manager* window_container_ptr,
 		hInst,
 		window_container_ptr);
 
-	if (hwnd == NULL)
-	{
+	if (hwnd == NULL) {
 		utils::Loger::Log(GetLastError(), "CreateWindowEX failed for window: " + titleWnd);
 		return false;
 	}

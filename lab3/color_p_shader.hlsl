@@ -1,4 +1,4 @@
-Texture2D<float4> sourceTexture : register(t0);
+Texture2D<float4> srcText : register(t0);
 
 SamplerState samState : register(s0);
 
@@ -10,5 +10,5 @@ struct PS_INPUT
 
 float4 main(PS_INPUT input) : SV_TARGET
 {
-    return sourceTexture.Sample(samState, input.Tex);
+    return srcText.Sample(samState, input.Tex);
 }

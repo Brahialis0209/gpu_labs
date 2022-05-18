@@ -146,16 +146,29 @@ void KeyboardProcessor::Process() {
 							XMMatrixRotationAxis({ 0,1,0 }, lon) * XMMatrixTranslation(pos_x, pos_y, pos_z));
 						break;
 					case '1':
-						pGraph->ChangeLightsIntencity(0);
+						pGraph->ChangeLightIntense(0);
 						break;
 					case '2':
-						pGraph->ChangeLightsIntencity(1);
+						pGraph->ChangeLightIntense(1);
 						break;
 					case '3':
-						pGraph->ChangeLightsIntencity(2);
+						pGraph->ChangeLightIntense(2);
 						break;
 					case '4':
 						pGraph->ChangeToneMaping();
+						break;
+					case '5':
+						pGraph->SetPbrShaderType(SHADER_TYPE::BRDF);
+						break;
+					case '6':
+						pGraph->SetPbrShaderType(SHADER_TYPE::NDF);
+						break;
+					case '7':
+						pGraph->SetPbrShaderType(SHADER_TYPE::GEOMETRY);
+						break;
+					case '8':
+						pGraph->SetPbrShaderType(SHADER_TYPE::FRESNEL);
+						pGraph->SetToneMaping(false);
 						break;
 					default:
 						break;

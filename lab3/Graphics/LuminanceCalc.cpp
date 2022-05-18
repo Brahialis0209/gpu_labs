@@ -5,13 +5,12 @@
 using namespace Microsoft;
 using namespace WRL;
 
-bool LuminanceCalc::Init(ComPtr<ID3D11Device> ptrDevice, size_t width, size_t height)
-{
-    if (!vertexShader.Init(ptrDevice, L"colorvertexshader.cso", nullptr, 0))
+bool LuminanceCalc::Init(ComPtr<ID3D11Device> ptrDevice, size_t width, size_t height) {
+    if (!vertexShader.Init(ptrDevice, L"color_v_shader.cso", nullptr, 0))
         return false;
-    if (!pixelShader.Init(ptrDevice, L"colorpixelshader.cso"))
+    if (!pixelShader.Init(ptrDevice, L"color_p_shader.cso"))
         return false;
-    if (!lumPixelShader.Init(ptrDevice, L"luminancepixelshader.cso"))
+    if (!lumPixelShader.Init(ptrDevice, L"lum_p_shader.cso"))
         return false;
 
     pDevice = ptrDevice;
@@ -93,9 +92,8 @@ float LuminanceCalc::process(ComPtr<ID3D11DeviceContext> devCtx, ComPtr<ID3D11Sh
     devCtx->VSSetShader(vertexShader.GetShaderPtr(), nullptr, 0);    
     rendText(devCtx, srcTx, vecTextures[0], pixelShader.GetShaderPtr());
 
-    for (size_t i = 1; i < vecTextures.size(); ++i) {
+    for (size_t i = 1; i < vecTextures.size(); ++i)
         rendText(devCtx, vecTextures[i - 1].GetTextResView(), vecTextures[i], lumPixelShader.GetShaderPtr());
-    }
 
     ID3D11ShaderResourceView* nullsrv[] = { nullptr };
     devCtx->PSSetShaderResources(0, 1, nullsrv);

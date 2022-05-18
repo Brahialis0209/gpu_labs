@@ -1,10 +1,10 @@
-Texture2D<float4> sourceTexture : register(t0);
+Texture2D<float4> srcText : register(t0);
 
 SamplerState samState : register(s0);
 
-cbuffer AverageLuminanceBuffer : register(b0)
+cbuffer BufMeanLum : register(b0)
 {
-    float AverageLuminance;
+    float meanLum;
 }
 
 struct PS_INPUT
@@ -15,8 +15,8 @@ struct PS_INPUT
 
 float Exposure()
 {
-    float luminance = AverageLuminance;
-    float keyValue = 1.03 - 2 / (2 + log10(luminance + 1));
+    float luminance = meanLum;
+    float keyValue = 1.035 - 2 / (2 + log10(luminance + 1));
     return keyValue / luminance;
 }
 
@@ -28,14 +28,12 @@ float3 Uncharted2Tonemap(float3 x)
     static const float d = 0.20; 
     static const float e = 0.02;
     static const float f = 0.30;
-
-    return ((x * (a * x + c * b) + d * e) / (x * (a * x + b) + d * f)) - e / f;
+    return ((x * (a * x + c * b) + d * e) / (x * (a * x + b)+d*f))-e/f;
 }
 
 float3 TonemapFilmic(float3 color)
 {
     static const float W = 11.2;
-
     float e = Exposure();
     float3 curr = Uncharted2Tonemap(e * color);
     float3 whiteScale = 1.0f / Uncharted2Tonemap(W);
@@ -49,6 +47,6 @@ float3 LinearToSRGB(float3 color)
 
 float4 main(PS_INPUT input) : SV_Target0
 {
-    float4 color = sourceTexture.Sample(samState, input.Tex);
+    float4 color = srcText.Sample(samState, input.Tex);
     return float4(LinearToSRGB(TonemapFilmic(color.xyz)), color.a);
 }

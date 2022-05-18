@@ -44,8 +44,8 @@ bool VertexShader::Init(DeviceComPtr pDev, wstring pathSh, D3D11_INPUT_ELEMENT_D
 		Loger::Log(hResult, error_msg);
 		return false;
 	}
-	if (layoutDesc != NULL){
-		hResult = pDev->CreateInputLayout(layoutDesc, numElem, pShaderBuf->GetBufferPointer(), 
+	if (layoutDesc != NULL) {
+		hResult = pDev->CreateInputLayout(layoutDesc, numElem, pShaderBuf->GetBufferPointer(),
 			pShaderBuf->GetBufferSize(), pLayout.GetAddressOf());
 		if (FAILED(hResult)) {
 			Loger::Log(hResult, "Failed create input layout");

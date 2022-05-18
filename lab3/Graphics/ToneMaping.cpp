@@ -5,11 +5,11 @@ bool ToneMaping::Init(ComPtr<ID3D11Device> device, ComPtr<ID3D11DeviceContext> d
 	wndWidth = width;
 	wndHeight = height;
 
-	if (!vShader.Init(device, L"tonevertexshader.cso", NULL, 0)) {
+	if (!vShader.Init(device, L"tone_v_shader.cso", NULL, 0)) {
 		return false;
 	}
 
-	if (!pShader.Init(device, L"tonepixelshader.cso")) {
+	if (!pShader.Init(device, L"tone_p_shader.cso")) {
 		return false;
 	}
 	D3D11_SAMPLER_DESC samplDesc;
@@ -42,15 +42,15 @@ bool ToneMaping::Init(ComPtr<ID3D11Device> device, ComPtr<ID3D11DeviceContext> d
 	return true;
 }
 
-void ToneMaping::Process(ComPtr<ID3D11DeviceContext> ctx, ComPtr<ID3D11ShaderResourceView> sourceTexture, 
+void ToneMaping::Process(ComPtr<ID3D11DeviceContext> ctx, ComPtr<ID3D11ShaderResourceView> srcText,
 	ComPtr<ID3D11RenderTargetView> renderTarget, D3D11_VIEWPORT viewport) {
 	Mode::GetUserAnnotation().BegEvent(L"Start ToneMaping.");
-	float averageLuminance = calc->process(ctx, sourceTexture);
+	float averageLuminance = calc->process(ctx, srcText);
 
 	LumConstBuf luminanceBufferData = { averageLuminance };
 
 	ctx->UpdateSubresource(lumBuffer.Get(), 0, nullptr, &luminanceBufferData, 0, 0);
-	ctx->PSSetShaderResources(0, 1, sourceTexture.GetAddressOf());
+	ctx->PSSetShaderResources(0, 1, srcText.GetAddressOf());
 	ctx->OMSetRenderTargets(1, renderTarget.GetAddressOf(), nullptr);
 	ctx->RSSetViewports(1, &viewport);
 
